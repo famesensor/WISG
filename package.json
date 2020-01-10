@@ -1,42 +1,32 @@
 {
   "name": "wish",
   "version": "1.0.0",
-  "engines": {
-    "node": "10.15.3",
-    "npm": "6.4.1"
-  },
+  "description": "��#\u0000 \u0000N\u0000o\u0000d\u0000e\u0000.\u0000j\u0000s\u0000_\u0000M\u0000o\u0000n\u0000g\u0000o\u0000D\u0000B\u0000_\u0000E\u0000J\u0000S\u0000-\u0000\r\u0000 \u0000",
   "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/famesensor/Node.js_MongoDB_EJS-.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/famesensor/Node.js_MongoDB_EJS-/issues"
+  },
+  "homepage": "https://github.com/famesensor/Node.js_MongoDB_EJS-#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.4",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "express-messages": "^1.0.1",
-    "express-session": "^1.16.1",
-    "express-validator": "^5.3.1",
-    "fs-extra": "^8.0.1",
-    "mongodb": "^3.2.3",
-    "mongoose": "^5.7.5",
-    "morgan": "^1.9.1",
-    "multer": "^1.4.1",
-    "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "start": "node app.js"
-  },
-  "author": "Sathit Junthong",
-  "license": "ISC",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/famesensor/wish.git"
-  },
-  "bugs": {
-    "url": "https://github.com/famesensor/wish/issues"
-  },
-  "homepage": "https://github.com/famesensor/wish#readme",
-  "description": ""
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.3.1",
+    "fs-extra": "^8.1.0",
+    "mongoose": "^5.8.6",
+    "multer": "^1.4.2",
+    "passport": "^0.4.1",
+    "path": "^0.12.7"
+  }
 }

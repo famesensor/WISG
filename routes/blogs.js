@@ -74,13 +74,13 @@ router.post('/add', uploadimg.upload.single('image'), function(req, res){
   if(errors){
     req.flash('danger','Post Blog fail');
     res.redirect('/blogs/add');
-    } else {
-      let newblog = new Blogs();
-      newblog.title = req.body.title;
-      newblog.author = req.user._id;
-      newblog.category = req.body.category;
-      newblog.body = req.body.body;
-      newblog.image = imgfile;
+  } else {
+    let newblog = new Blogs();
+    newblog.title = req.body.title;
+    newblog.author = req.user._id;
+    newblog.category = req.body.category;
+    newblog.body = req.body.body;
+    newblog.image = imgfile;
       // newblog.image.filename = req.file.filename;
       // newblog.image.data = new Buffer(encode_image, 'base64');
       // newblog.image.contentType = req.file.mimetype;
@@ -101,16 +101,16 @@ router.post('/add', uploadimg.upload.single('image'), function(req, res){
 
 // Load Edit Form
 router.get('/edit/:id', ensureAuthenticated, function(req, res){
-    Blogs.findById(req.params.id, function(err, blog){
-      if(blog.author != req.user._id){
-        req.flash('danger', 'Not Authorized');
-        res.redirect('/');
-      }
-      res.render('edit_blog', {
-        title:'Edit blog',
-        blog:blog
-      });
+  Blogs.findById(req.params.id, function(err, blog){
+    if(blog.author != req.user._id){
+      req.flash('danger', 'Not Authorized');
+      res.redirect('/');
+    }
+    res.render('edit_blog', {
+      title:'Edit blog',
+      blog:blog
     });
+  });
 });
 
 // Update Submit POST Route
