@@ -1,0 +1,65 @@
+<% include ./partials/header%>
+<div class="container">
+    <div class="row no-gutters m-30">
+        <div class="col-xs-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="post-contant box-shadow p-30">
+                <div class="section-heading">
+                    <h5>BLOGS</h5>
+                </div>
+                <div class="row">
+                    <% for(let i=0 ; i < blog.length; i++){ %>
+                        <div class="col-md-4">
+                          <div class="card mb-2">
+                            <img class="card-img-top" src="data:image/jpeg;base64, <%= (blog[i].image.data).toString('base64') %>" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title"><%= blog[i].title.substring(0, 25) %>...</h5>
+                                   <p class="card-text"><%= blog[i].body.substring(0, 50) %>...</p>
+                                    <a href="/blogs/<%= blog[i]._id %>"><button class="btn btn-primary" >Read more...</button> </a>
+                                </div>
+                            </div>
+                        </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="post-contant box-shadow p-30">
+                <div class="section-heading">
+                    <h5>MOST POPULAR</h5>
+                </div>
+                <% for(let i=0 ; i < most.length; i++){ %>
+                    <div class="single-blog-post d-flex">
+                        <div class="post-thumbnail">
+                            <img src="data:image/jpeg;base64, <%= (most[i].image.data).toString('base64') %>">
+                        </div>
+                        <div class="post-small">
+                            <a class="posttitle" href="/blogs/<%= most[i]._id %>">
+                                <%= most[i].title.substring(0, 25) %>...
+                            </a>
+                            <div class="post-meta">
+                                <div class="row">
+                                    <div class="col-6 d-flex justify-content-center p-2">
+                                        <a href="/blogs/<%= most[i]._id %>"><i class="fas fa-eye"></i> <%= most[i].view %></a>
+                                    </div>
+                                    <div class="col-6 d-flex justify-content-center p-2">
+                                        <a href="/blogs/<%= most[i]._id %>"><i class="fas fa-comment"></i> <%= most[i].comments %></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+                <div class="section-heading">
+                    <h5>CATEGORIES</h5>
+                </div>
+                <ul class="catagory-widgets">
+					<li><a href="/blogs/category/<%= 'culture' %>"><span><i class="fas fa-map-marked-alt"></i> Culture</span></a></li>
+					<li><a href="/blogs/category/<%= 'environment' %>"><span><i class="fas fa-map-marked-alt"></i> Environment</span></a></li>
+					<li><a href="/blogs/category/<%= 'city' %>"><span><i class="fas fa-map-marked-alt"></i> City</span></a></li>
+					<li><a href="/blogs/category/<%= 'adventure' %>"><span><i class="fas fa-map-marked-alt"></i> Adventure</span></a></li>
+				</ul>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ./partials/footer%>

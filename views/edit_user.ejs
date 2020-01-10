@@ -1,0 +1,41 @@
+<% include ./partials/header%>
+
+    <div class="container">
+        <div class="row no-gutters m-30">
+            <div class="col-xs-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+                <div class="post-contant box-shadow p-30">
+                    <h3><span ><i class="fas fa-clipboard"></i></span> EDIT USER</h3>
+                    <!-- Edit form -->
+                    <form action="/users/edit_user/<%= user._id %>" enctype="multipart/form-data" method="post">
+                        <div class="form-group">
+                            <label>Photo</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image" name="image" accept=".jpg, .jpeg" >
+                                <label class="custom-file-label" for="customFile" value=""></label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Name :</label>
+                            <input type="text" class="form-control" name="fname" required="required" value="<%= user.fname %>" >
+                        </div>
+                        <div class="form-group">
+                            <label>Phone :</label>
+                            <input type="text" class="form-control" name="phone" required="required" value="<%= user.phone %>" >
+                        </div>
+                        <div class="form-group">
+                            <label>Bio :</label>
+                            <textarea type="text" row="5" class="form-control" name="bio" required="required" value="<%= user.bio %>" ><%= user.bio %></textarea>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="btn btn-secondary">Submit</button>&nbsp;&nbsp;   
+                        </div>                
+                    </form>
+                    <div class="d-flex justify-content-end">
+                        <a href="/blogs/profile/<%= user._id %>"><button type="submit" class="btn btn-danger">Canceled</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<% include ./partials/footer%>

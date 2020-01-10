@@ -1,0 +1,95 @@
+<% include ./partials/header%>
+	<!-- contant -->
+	<div class="container" style="margin-top: 80px">
+		<div class="row no-gutters">
+			<div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5>ABOUT US</h5>
+					</div>
+					<div class="about-page">
+						<img src="/css/imgs/logo.png" class="rounded mx-auto d-block w-25"><br><hr>
+						<p>&emsp;&emsp;&emsp;&emsp;&emsp;<b>WISG</b> is a website for who want to share experience on travel like a blog 
+							and who don’t know where should we go ,want to read review activity, price, 
+							how to go for decide to travel.</p>
+						<div class="d-flex justify-content-end">
+							<p>By My team</p>
+						</div>
+					</div>
+				</div>
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5>OUR TEAM</h5>
+					</div>
+					<div class="single-team-member d-flex align-items-center">
+						<div class="team-member-thumbnail">
+							<img src="/css/imgs/earth.jpg" class="img-responsive">
+							<div class="overlay">
+								<a href="https://www.facebook.com/ph.c.phlphumphyxm" target="_blank"><span><i class="fab fa-facebook-square"></i></span></a>
+								<a href="https://www.instagram.com/planet_earthone/?hl=th" target="_blank"><span><i class="fab fa-instagram"></i></span></a>
+							</div>
+						</div>
+						<div class="team-member-content">
+							<h5>Mr.Patcharapon Poompayom</h5>
+							<span>ACS, KMUTT</span>
+							<p>It’s you road, and yours alone.
+									Other may walk it with you, but no one can walk it for you.</p>
+						</div>
+					</div>
+					<div class="single-team-member d-flex align-items-center">
+						<div class="team-member-thumbnail">
+							<img src="css/imgs/fame.jpg">
+							<div class="overlay">
+								<a href="https://www.facebook.com/satit.juntong" target="_blank"><span><i class="fab fa-facebook-square"></i></span></a>
+								<a href="https://www.instagram.com/fame_ct/?hl=th" target="_blank"><span><i class="fab fa-instagram"></i></span></a>
+							</div>
+						</div>
+						<div class="team-member-content">
+							<h5>Mr.Sathit Junthong</h5>
+							<span>ACS, KMUTT</span>
+							<p>It's so difficult but it did not mean that you can not pass it wich is problem . Just tell yourself that you can do it. That`s why , you are going to get that.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5>MOST POPULAR</h5>
+					</div>
+					<% for(let i=0 ; i < most.length; i++){ %>
+						<div class="single-blog-post d-flex">
+							<div class="post-thumbnail">
+								<img src="data:image/jpeg;base64, <%= (most[i].image.data).toString('base64') %>">
+							</div>
+							<div class="post-small">
+								<a class="posttitle" href="/blogs/<%= most[i]._id %>">
+									<%= most[i].title.substring(0, 25) %>...
+								</a>
+								<div class="post-meta">
+									<div class="row">
+										<div class="col-6 d-flex justify-content-center p-2">
+											<a href="/blogs/<%= most[i]._id %>"><i class="fas fa-eye"></i> <%= most[i].view %></a>
+										</div>
+										<div class="col-6 d-flex justify-content-center p-2">
+											<a href="/blogs/<%= most[i]._id %>"><i class="fas fa-comment"></i> <%= most[i].comments %></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% } %>
+					<div class="section-heading">
+						<h5>CATEGORIES</h5>
+					</div>
+					<ul class="catagory-widgets">
+							<li><a href="/blogs/category/<%= 'culture' %>"><span><i class="fas fa-map-marked-alt"></i> Culture</span></a></li>
+							<li><a href="/blogs/category/<%= 'environment' %>"><span><i class="fas fa-map-marked-alt"></i> Environment</span></a></li>
+							<li><a href="/blogs/category/<%= 'city' %>"><span><i class="fas fa-map-marked-alt"></i> City</span></a></li>
+							<li><a href="/blogs/category/<%= 'adventure' %>"><span><i class="fas fa-map-marked-alt"></i> Adventure</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% include ./partials/footer%>

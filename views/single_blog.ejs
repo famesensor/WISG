@@ -1,0 +1,165 @@
+<% include ./partials/header%>
+	<!-- contant -->
+	<div class="container" style="margin-top: 80px">
+		<div class="row no-gutters">
+			<div class="col-xl-9 col-lg-9 col-md-9 col-sm-12 col-12">
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5><%= blog.title %></h5>
+					</div>
+					<div>
+						<img src="data:image/jpeg;base64, <%= (blog.image.data).toString('base64') %>" class="d-block w-100" >
+					</div>
+					<p><small><i>Posted on <%= blog.created.toDateString() %></i></small></p>
+					<p>&emsp;&emsp;&emsp;&emsp;&emsp; 
+					<%= blog.body %></p>
+					<div class="row">
+						<div class="col-6">
+
+						</div>
+						<div class="col-6">
+							<% if (user) { %>
+								<% if (user.status === 'admin') { %>
+									<div class="d-flex  justify-content-end">
+										<% if (user.id == blog.author) { %>
+											<a href="/blogs/edit/<%= blog._id %>"><button class="btn btn-primary" style="margin-right: 10px ">Edit</button></a>
+										<% } %>
+										<form action="/blogs/<%= blog._id %>" method="post">
+											<a href="/"><button class="btn btn-danger">Delete</button></a>
+										</form>
+									</div>
+								<% } %>
+								<% if ((user.id == blog.author)&&(user.status !== 'admin')) { %>
+								<div class="d-flex  justify-content-end">
+									<div class="btn-group">
+										<a href="/blogs/edit/<%= blog._id %>"><button class="btn btn-primary" style="margin-right: 10px ">Edit</button></a>
+										<form action="/blogs/<%= blog._id %>" method="post">
+											<a href="/"><button class="btn btn-danger">Delete</button></a>
+										</form>
+									</div>
+								</div>
+								
+							<% } } %>	
+						</div>
+					</div>
+					<hr>
+					<div class="media">				
+				    	<img src="data:image/jpeg;base64, <%= (author.image.data).toString('base64') %>" class="align-self-start mr-3  rounded" style="width:80px;">
+				    	<div class="media-body">
+				      		<h4><%= author.fname %></h4>
+				      		<p><%= author.bio %></p>      
+						</div>
+						<% if (user) { %>
+							<div class="media-body">
+								<a href="/blogs/profile/<%= author._id %>"><button class="btn btn-primary">View Profile</button></a>
+							</div>
+						<% } %>
+					  </div>
+					  
+				</div>
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5>COMMENT</h5>
+					</div>
+					<% comment.forEach(function(comments){ %>
+						<div class="media">
+							<% let i = '/blogs/userimg/'+comments.author %>
+							<img src="<%= i %>" class="align-self-start mr-3 rounded" style="width:70px;">
+							<div class="media-body">
+							  <h4><%= comments.namec %> <font size="2">Posted on <%= comments.created.toDateString() %></font></h4>
+							  <p><%= comments.comment %></p>  
+							</div>
+						</div>
+						<% if (user) { %>
+							<% if (user.id == comments.author || user.status == 'admin') { %>
+								<div class="d-flex justify-content-end">
+									<form action="/blogs/del/<%= blog._id %>/<%= comments._id %>" method="post">
+										<a href="/"><button class="btn btn-danger">Delete</button></a>
+									</form>
+								</div>
+							<% } %>
+						<% } %>
+					<% }); %>
+				</div>
+				<% if (user) { %>
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5>Leave a reply</h5>
+					</div>
+					<form action="/blogs/comment/<%= blog._id %>" method="post">
+						<div class="form-group">
+							<textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+						</div>
+						<button onclick="actOnPost1(event);" data-post-id="<%=blog._id%>" class="btn btn-secondary">Comment</button>
+					</form>
+				</div>
+				<% } %>
+			</div>
+			<div class="col-xs-3 col-lg-3 col-md-12 col-sm-12 col-12">
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5>MOST POPULAR</h5>
+					</div>
+					<% for(let i=0 ; i < most.length; i++){ %>
+						<div class="single-blog-post d-flex">
+							<div class="post-thumbnail">
+								<img src="data:image/jpeg;base64, <%= (most[i].image.data).toString('base64') %>">
+							</div>
+							<div class="post-small">
+								<a class="posttitle" href="/blogs/<%= most[i]._id %>">
+									<%= most[i].title.substring(0, 25) %>...
+								</a>
+								<div class="post-meta">
+									<div class="row">
+										<div class="col-6 d-flex justify-content-center p-2">
+											<a href="/blogs/<%= most[i]._id %>"><i class="fas fa-eye"></i> <%= most[i].view %></a>
+										</div>
+										<div class="col-6 d-flex justify-content-center p-2">
+											<a href="/blogs/<%= most[i]._id %>"><i class="fas fa-comment"></i> <%= most[i].comments %></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% } %>
+					<div class="section-heading">
+						<h5>RECENTS POSTS</h5>
+					</div>
+					<% for(let i=0 ; i < news.length; i++){ %>
+						<div class="single-blog-post d-flex">
+							<div class="post-thumbnail">
+								<img src="data:image/jpeg;base64, <%= (news[i].image.data).toString('base64') %>">
+							</div>
+							<div class="post-small">
+								<a class="posttitle" href="/blogs/<%= news[i]._id %>">
+									<%= news[i].title.substring(0, 25) %>...
+								</a>
+								<div class="post-meta">
+									<div class="row">
+										<div class="col-6 d-flex justify-content-center p-2">
+											<a href="#"><i class="fas fa-eye"></i> <%= news[i].view %></a>
+										</div>
+										<div class="col-6 d-flex justify-content-center p-2">
+											<a href="#"><i class="fas fa-comment"></i> <%= news[i].comments %></a>
+										</div>
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					<% } %>
+					<div class="section-heading">
+						<h5>CATEGORIES</h5>
+					</div>
+					<ul class="catagory-widgets">
+						<li><a href="/blogs/culture"><span><i class="fas fa-map-marked-alt"></i> Culture</span></a></li>
+						<li><a href="/blogs/environment"><span><i class="fas fa-map-marked-alt"></i> Environment</span></a></li>
+						<li><a href="/blogs/city"><span><i class="fas fa-map-marked-alt"></i> City</span></a></li>
+						<li><a href="/blogs/adventure"><span><i class="fas fa-map-marked-alt"></i> Adventure</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+<% include ./partials/footer%>

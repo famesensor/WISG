@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>wisg.</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap -->
+	<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css"/>
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="/css/style.css"/>
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+	<!-- JavaScript -->
+	<script type="text/javascript" src="/js/control.js" defer></script>
+	<!-- Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<!-- shortcut icon -->
+	<link rel="shortcut icon" href="/css/imgs/logo.png" />
+</head>
+<body>
+	<!-- navbar -->
+	<nav class="navbar fixed-top navbar-expand-sm navbar-light bg-nav">
+		<a class="navbar-brand" href="/">
+			<img src="/css/imgs/WISG.png" class="logo" alt="logo">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon" id="toggle_id"></span>
+		</button>
+		<div class="collapse navbar-collapse " id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto " style="margin-right: 10px">
+				<li class="nav-item active">
+					<a class="nav-link" href="/"><span><i class="fas fa-home"></i></span><font color="white"> Home</font> </a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/blogs/allblog"><span><i class="fab fa-blogger"></i></span><font color="white"> Blogs</font></a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="/about"><span><i class="far fa-address-card"> </i></span><font color="white"> About</font></a>
+				</li>
+				<% if (user) { %>
+					<% if (user.status === 'admin') { %> 
+						<li class="nav-item">
+							<a class="nav-link" href="/users/list"><span><i class="fas fa-users-cog"></i></span><font color="white"> Manage User</font></a>
+						</li>
+					<% } %>
+				<% } %>
+			</ul>
+			<% if (user) { %>
+				<div class="btn-group">
+					<button type="button" class="btn btn-secondary" ><a href="/blogs/add"><i class="fas fa-plus-square"></i> Post</a></button>
+					<button type="button" class="btn btn-secondary" ><a href="/blogs/profile/<%= user._id %>" ><span><i class="fas fa-user-circle"></i></span> Profile</a></button>
+					<button type="button" class="btn btn-secondary" ><a href="/users/logout" ><span><i class="fas fa-lock-open"></i></span> Logout</a></button>
+				</div>
+			<% } else  { %>
+        	    <a href="/users/login" ><button class="btn btn-secondary" type="login"><span><i class="fas fa-key"></i></span></button></a>	
+			<% } %>	
+		</div>
+	</nav>

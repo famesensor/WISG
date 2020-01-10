@@ -1,0 +1,44 @@
+<% include ./partials/header%>
+
+    <div class="container">
+        <div class="m-signin-up">
+          <div class="post-contant-signin box-shadow m-20 p-30">
+            <div class="row">
+              <div class="col-12">
+                <div class="section-heading">
+                    <h5>MANAGE USERS</h5>
+                </div>
+
+                <% author.forEach(function(authors){ %>
+                  <% if (authors.status === 'admin'){ %>
+                      <% return; %>
+                  <% } else { %>
+                <div class="card mb-2">
+                  <div class="row no-gutters">
+                          <div class="col-lg-5 col-md-5 col-sm-12 col-5 col-md-2">
+                              <div class="card-body border-light p-2">
+                                  <img src="data:image/jpeg;base64, <%= (authors.image.data).toString('base64') %>" class="img-fluid" width="100%">
+                              </div>
+                          </div>
+                          <div class="col-lg-7 col-md-7 col-sm-12 col-7 col-md-10">
+                              <div class="card-body border-light p-3">
+                                  <h3>Name : <%= authors.fname %></h3>
+                                  <a class="card-text">Username : <%= authors.username %></a>
+                                  <div class="d-flex justify-content-start" style="margin-top: 5%">
+                                    <form action="/users/del/<%= authors._id %>" method="post">
+                                      <a href="/"><button class="btn btn-danger">Delete</button></a>
+                                    </form>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <% } %>
+                  <% }); %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+<% include ./partials/footer%>

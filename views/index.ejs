@@ -1,0 +1,148 @@
+<% include ./partials/header%>
+
+<!-- img-show -->
+	<div class="container">
+		<div id="carouselExampleInterval" class="carousel slide carousel-fade m-30" data-ride="carousel" >
+			<ul class="carousel-indicators">
+	    		<li data-target="#carouselExampleInterval" data-slide-to="0" class="active"></li>
+	    		<li data-target="#carouselExampleInterval" data-slide-to="1"></li>
+	    		<li data-target="#carouselExampleInterval" data-slide-to="2"></li>
+	  		</ul>
+	  		<div class="carousel-inner">
+	    		<div class="carousel-item active" data-interval="2000">
+	     			<img src="/css/imgs/G4.jpg" class="d-block w-100" alt="...">
+	    		</div>
+	    		<div class="carousel-item" data-interval="2000">
+	      			<img src="/css/imgs/G6.jpg" class="d-block w-100" alt="...">
+	    		</div>
+	    		<div class="carousel-item" data-interval="2000">
+	      			<img src="/css/imgs/G5.jpg" class="d-block w-100" alt="...">
+	    		</div>
+	  		</div>
+	  		<a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+	    		<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+	    		<span class="sr-only">Previous</span>
+	  		</a>
+	  		<a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+	    		<span class="carousel-control-next-icon" aria-hidden="true"></span>
+	    		<span class="sr-only">Next</span>
+	  		</a>
+		</div>
+	</div>
+	<!-- contant -->
+	<div class="container">
+		<div class="row no-gutters">
+			<div class="col-xs-9 col-lg-9 col-md-12 col-sm-12 col-12">
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5>TRENDING NOW</h5>
+					</div>
+					<div class="trending-post-now d-flex mb-30">
+						<div class="container">
+						    <div class="carousel slide" data-ride="carousel">
+						        <div class="carousel-inner">
+						            <div class="carousel-item active">
+						                <div class="row">
+											<% for(var l = 0 ; l < blogs.length; l++) {} %>
+											<% for(let i=0 ; i < blogs.length; i++){ %>
+												<% if (i < 3){ %>
+													<% let random = Math.floor(Math.random() * l); %>
+													<% let rancheck = random; %>
+													<% if (random === rancheck){ %>
+														<% random = Math.floor(Math.random() * l); %>
+														<% rancheck = random; %>
+													<% } %>
+													<div class="col-sm"><img class="d-block w-100" src="data:image/jpeg;base64, <%= (blogs[random].image.data).toString('base64') %>" alt="1 slide">
+														<hr>
+														<p class="card-text" ><%= blogs[random].body.substring(0, 50) %>...</p>
+														<a class="stretched-link" href="/blogs/<%= blogs[random]._id %>"></a>
+													</div>
+												<% } %>
+												
+											<% } %>
+										</div>
+										
+						            </div>
+						            <div class="carousel-item">
+						                <div class="row">
+											<% for(let i=0 ; i < blogs.length; i++){ %>
+												<% if (i < 3 ) { %>
+													<% let random = Math.floor(Math.random() * l); %>
+													<% rancheck = random; %>
+													<% if (random === rancheck){ %>
+														<% random = Math.floor(Math.random() * l); %>
+														<% rancheck = random; %>
+													<% } %>
+													<div class="col-sm"><img class="d-block w-100" src="data:image/jpeg;base64, <%= (blogs[random].image.data).toString('base64') %>" alt="4 slide">
+														<hr>
+														<p class="card-text" ><%= blogs[random].body.substring(0, 50) %>...</p>
+														<a class="stretched-link" href="/blogs/<%= blogs[random]._id %>"></a>
+													</div>
+												<% } %>
+											<% } %>
+						                </div>
+						            </div>
+						        </div>
+						    </div>
+						</div>
+					</div>
+					<div class="section-heading">
+						<h5>NEWS POST</h5>
+					</div>
+					<div class="card-columns">
+						<% for(let i=0 ; i < news.length; i++){ %>
+					      <div class="card mb-2">
+					        <img class="card-img-top" src="data:image/jpeg;base64, <%= (news[i].image.data).toString('base64') %>"
+					          alt="Card image cap">
+					        <div class="card-body">
+					          <h5 class="card-title"><%= news[i].title.substring(0, 25) %>...</h5>
+				            <p class="card-text"><%= news[i].body.substring(0, 50) %>...</p>
+				            <a href="/blogs/<%= news[i]._id %>"><button class="btn btn-primary" >Read more...</button> </a>
+				          </div>
+								</div>
+						<% } %>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-3 col-lg-3 col-md-12 col-sm-12 col-12">
+				<div class="post-contant box-shadow p-30">
+					<div class="section-heading">
+						<h5>MOST POPULAR</h5>
+					</div>
+					<% for(let i=0 ; i < most.length; i++){ %>
+						<div class="single-blog-post d-flex">
+							<div class="post-thumbnail">
+								<img src="data:image/jpeg;base64, <%= (most[i].image.data).toString('base64') %>">
+							</div>
+							<div class="post-small">
+								<a class="posttitle" href="/blogs/<%= most[i]._id %>">
+									<%= most[i].title.substring(0, 25) %>...
+								</a>
+								<div class="post-meta">
+									<div class="row">
+										<div class="col-6 d-flex justify-content-center p-2">
+											<a href="/blogs/<%= most[i]._id %>"><i class="fas fa-eye"></i> <%= most[i].view %></a>
+										</div>
+										<div class="col-6 d-flex justify-content-center p-2">
+											<a href="/blogs/<%= most[i]._id %>"><i class="fas fa-comment"></i> <%= most[i].comments %></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					<% } %>
+					<div class="section-heading">
+						<h5>CATEGORIES</h5>
+					</div>
+					<ul class="catagory-widgets">
+						<li><a href="/blogs/category/<%= 'culture' %>"><span><i class="fas fa-map-marked-alt"></i> Culture</span></a></li>
+						<li><a href="/blogs/category/<%= 'environment' %>"><span><i class="fas fa-map-marked-alt"></i> Environment</span></a></li>
+						<li><a href="/blogs/category/<%= 'city' %>"><span><i class="fas fa-map-marked-alt"></i> City</span></a></li>
+						<li><a href="/blogs/category/<%= 'adventure' %>"><span><i class="fas fa-map-marked-alt"></i> Adventure</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<% include ./partials/footer%>

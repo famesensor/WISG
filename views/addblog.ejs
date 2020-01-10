@@ -1,0 +1,78 @@
+<% include ./partials/header%>
+
+<div class="container">
+    <div class="row no-gutters m-30">
+        <div class="col-xs-9 col-lg-9 col-md-12 col-sm-12 col-12">
+            <div class="post-contant box-shadow p-30">
+                <h3><span ><i class="fas fa-clipboard"></i></span> POST BLOG</h3>
+                <!-- POST FORM -->
+                <%- messages('message', locals) %> 
+                <form action="/blogs/add" enctype="multipart/form-data" method="post">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input type="text" class="form-control" name="title" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>Photo</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="image" name="image" accept=".jpg, .jpeg" required="required">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category" class="custom-select mb-3" required="required">
+                            <option selected>Custom Select Menu</option>
+                            <option value="culture">Culture</option>
+                            <option value="environment">Environment</option>
+                            <option value="city">City</option>
+                            <option value="adventure">Adventure</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">Contant</label>
+                        <textarea class="form-control" rows="5" id="comment" name="body"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" class="btn btn-secondary">Post</button>   
+                    </div>
+                      
+                </form>
+                <div class="d-flex justify-content-end">
+                    <a href="/"><button type="submit" class="btn btn-danger">Canceled</button></a>   
+                </div>       
+            </div>
+        </div>
+        <div class="col-xs-3 col-lg-3 col-md-12 col-sm-12 col-12">
+            <div class="post-contant box-shadow p-30">
+                <div class="section-heading">
+                    <h5>MOST POPULAR</h5>
+                </div>
+                <% for(let i=0 ; i < most.length; i++){ %>
+                    <div class="single-blog-post d-flex">
+                        <div class="post-thumbnail">
+                            <img src="data:image/jpeg;base64, <%= (most[i].image.data).toString('base64') %>">
+                        </div>
+                        <div class="post-small">
+                            <a class="posttitle" href="/blogs/<%= most[i]._id %>">
+                                <%= most[i].title.substring(0, 25) %>...
+                            </a>
+                            <div class="post-meta">
+                                <div class="row">
+                                    <div class="col-6 d-flex justify-content-center p-2">
+                                        <a href="/blogs/<%= most[i]._id %>"><i class="fas fa-eye"></i> <%= most[i].view %></a>
+                                    </div>
+                                    <div class="col-6 d-flex justify-content-center p-2">
+                                        <a href="/blogs/<%= most[i]._id %>"><i class="fas fa-comment"></i> <%= most[i].comments %></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<% include ./partials/footer%>

@@ -1,0 +1,51 @@
+<% include ./partials/header%>
+
+<div class="container" style="margin-bottom: 10%">
+    <div class="row">
+        <div class="col-lg-2 col-md-4 col-sm-4 ">  
+            <div id="profile">
+                <div id="headname">
+                    <h1>PROFILE</h1>
+                </div>
+                <div id="profilecard">
+                    <div id="image"><img src="data:image/jpeg;base64, <%= (users.image.data).toString('base64') %>" class="mx-auto d-block w-100 rounded"></div>
+                    <div id="about">
+                        <a id="name"><%= users.fname %></a><br>
+                        <a id="username">Username : <%= users.username %></a><br>
+                        <a id="email">E-mail : <%= users.email %></a><br>
+                        <a id="phone">Phone : <%= users.phone %></a><br>
+                        <a id="bio">Bio : <%= users.bio %></a>
+                    </div>
+                    <% if (users.username == user.username) { %>
+                        <a href="/users/edit_user/<%= user._id %>"><button class="edit">Edit</button></a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-10 col-md-8 col-sm-8 ">
+            <div id="posts">
+                <div id="headname">
+                    <h1>POST</h1>
+                </div>
+                <% for(let i=0 ; i < blog.length; i++){ %>
+                    <div class="row log">
+                        <div class="image">
+                            <img src="data:image/jpeg;base64, <%= (blog[i].image.data).toString('base64') %>" class="mr-3">
+                        </div>
+                        <div class="media-body">
+                            <a class="" href="/blogs/<%= blog[i]._id %>"><%= blog[i].title %></a><br>
+                            <label>Content: <%= blog[i].body.substring(0, 50) %>...</label>
+                            <div class="d-flex justify-content-start">
+                                <a href="#"><i class="fas fa-eye"></i>&nbsp;<%= blog[i].view %></a>&nbsp;&nbsp;&nbsp;
+                                <a href="#"><i class="fas fa-comment"></i>&nbsp;<%= blog[i].comments %></a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                <% } %> 
+            </div>
+        </div>
+    </div>
+  </div>
+
+<% include ./partials/footer%>

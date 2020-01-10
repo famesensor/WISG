@@ -1,0 +1,37 @@
+<% include ./partials/header2%>
+  <!-- Login Form -->
+  <div class="container">
+    <div class="m-signin-up">
+      <div class="post-contant-signin box-shadow m-20">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 p-30">
+            <h2><span><i class="fas fa-sign-in-alt"></i></span> SIGN IN</h2>
+            <form action="/users/login" method="post">
+              <div class="form-group">
+                  <i class="fa fa-user"></i><label>Username</label>
+                  <input type="text" class="form-control" placeholder="username" name="username" required="required" >
+              </div>
+              <div class="form-group">
+                  <i class="fa fa-lock"></i><label>Password</label>
+                  <input type="password" class="form-control" placeholder="password" name="password" required="required">					
+              </div>
+              <%- messages('message', locals) %>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-secondary btn-block">Sign in</button>
+              </div>
+            </form>	
+
+            <hr>
+
+            <p>Need an account? <a href="/users/register"><strong>Sign up</strong></a></p>
+            <p>Or go <a href="/"><strong>home</strong></a>.</p>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 bg-singin">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+	</div>
+	
+<% include ./partials/footer%>
